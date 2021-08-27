@@ -103,9 +103,8 @@ public class DemoMessageView extends Application
 					if(demoDataCreator != null && demoDataCreator.isRunning())
 					{
 						testButton.fire();
-						testButton.setDisable(true);
 					}
-					
+					testButton.setDisable(true);
 				}
 				
 			});

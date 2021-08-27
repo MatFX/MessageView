@@ -48,7 +48,7 @@ public class MessageView extends BorderPane implements IMessageItemListener
 {
 	private Stage stage;
 	
-	private double MIN_WIDTH_VALUE = 400D;
+	private double MIN_WIDTH_VALUE = 450D;
 	
 	private double MIN_HEIGHT_VALUE = 400D;
 	
