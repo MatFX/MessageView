@@ -8,6 +8,7 @@ import eu.matfx.listener.IMessageItemListener;
 import eu.matfx.message.ExpirationMessageItem;
 import eu.matfx.message.MessageItem;
 import eu.matfx.tools.CSSContainer;
+import eu.matfx.tools.LanguageStorage;
 import eu.matfx.tools.ResourceLoader;
 import eu.matfx.tools.UITools;
 import eu.matfx.view.timer.TimerScheduler;
@@ -142,7 +143,7 @@ public class MessageView extends BorderPane implements IMessageItemListener
 		buttonBox.setPadding(new Insets(3,3,3,3));
 		
 		
-		closeMessage = new Button("close message");
+		closeMessage = new Button(LanguageStorage.getLanguage(LanguageStorage.BUTTON_TEXT));
 		closeMessage.setDisable(true);
 		closeMessage.setOnAction(new EventHandler<ActionEvent>() 
 		{

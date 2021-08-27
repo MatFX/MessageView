@@ -1,5 +1,6 @@
 package eu.matfx.message;
 
+import eu.matfx.tools.LanguageStorage;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.StringProperty;
@@ -91,7 +92,8 @@ public class ExpirationMessageItem extends MessageItem
 		StringBuilder sb = new StringBuilder(headline);
 		sb.append(" ");
 		sb.append(second);
-		sb.append(" sec.");
+		sb.append(" ");
+		sb.append(LanguageStorage.getLanguage(LanguageStorage.SECOND_SHORTCUT));
 		return sb.toString();
 	}
 }

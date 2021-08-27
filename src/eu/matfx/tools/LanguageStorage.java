@@ -24,16 +24,7 @@ public class LanguageStorage
 		
 	public static final int	MESS_CUSTOM = 6;
 	
-	private static String[] simpleLanguageStorage = new String[] {
-			"close message", 
-			"sec.", 
-			MESSAGE_TYPE.NOTIFICATION.name(),
-			MESSAGE_TYPE.WARNING.name(),
-			MESSAGE_TYPE.ALERT.name(),
-			MESSAGE_TYPE.ERROR.name(),
-			MESSAGE_TYPE.CUSTOM.name(),
-			};
-	
+	private static String[] simpleLanguageStorage = initLanguage();
 	
 	public static String getLanguage(final int INDEX)
 	{
@@ -47,6 +38,24 @@ public class LanguageStorage
 		}
 	}
 	
+	private static String[] initLanguage() 
+	{
+		return new String[] {
+				"close message", 
+				"sec.", 
+				MESSAGE_TYPE.NOTIFICATION.name(),
+				MESSAGE_TYPE.WARNING.name(),
+				MESSAGE_TYPE.ALERT.name(),
+				MESSAGE_TYPE.ERROR.name(),
+				MESSAGE_TYPE.CUSTOM.name(),
+				};
+	}
+	
+	public static void resetLanguage()
+	{
+		simpleLanguageStorage = initLanguage();
+	}
+
 	public static void setLanguageAt(final int INDEX, final String stringToSet) throws NoValidIndexException
 	{
 		if(INDEX >= BUTTON_TEXT && INDEX <= simpleLanguageStorage.length-1)
