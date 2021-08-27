@@ -24,6 +24,7 @@ public class ExpirationTimerTask extends TimerTask
 	{
 		synchronized(this.iMessageListener)
 		{
+			expirationMessageItem.stopTimeLine();
 			this.iMessageListener.removeMessageItemListener(expirationMessageItem);
 		}
 	}

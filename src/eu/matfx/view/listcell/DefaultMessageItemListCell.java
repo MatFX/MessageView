@@ -2,10 +2,6 @@ package eu.matfx.view.listcell;
 
 import eu.matfx.message.ExpirationMessageItem;
 import eu.matfx.message.MessageItem;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.scene.control.ListCell;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -55,13 +51,15 @@ public class DefaultMessageItemListCell extends ListCell<MessageItem>
         	}
         	
         	setGraphic(sample);
-        	setText(item.getHeadline());
         	
         	
-        	
-        	
-        	
-        	
+        	if(item instanceof ExpirationMessageItem)
+        	{
+        		((ExpirationMessageItem)item).setTextProperty(this.textProperty());
+        	}
+        	//normal way to change text
+        	else
+        		setText(item.getHeadline());
         	
        	}
         else
@@ -73,14 +71,5 @@ public class DefaultMessageItemListCell extends ListCell<MessageItem>
        
 	}
 
-
-	private String getTextToSet(String headline, int second)
-	{
-		StringBuilder sb = new StringBuilder(headline);
-		sb.append(" ");
-		sb.append(second);
-		sb.append(" sec.");
-		return sb.toString();
-	}
 
 }

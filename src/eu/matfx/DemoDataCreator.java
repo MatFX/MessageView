@@ -35,13 +35,16 @@ public class DemoDataCreator extends Thread
 				
 				int indexMessageType = (int) (Math.random() * MESSAGE_TYPE.values().length);
 				MessageItem customMessage = null;
-				if(MESSAGE_TYPE.values()[indexMessageType] == MESSAGE_TYPE.NOTIFICATION)
+				//notification and warning with expiration message
+				if(MESSAGE_TYPE.values()[indexMessageType] == MESSAGE_TYPE.NOTIFICATION
+						|| MESSAGE_TYPE.values()[indexMessageType] == MESSAGE_TYPE.WARNING)
 				{
 					long delayInMS = (long) ((Math.random() * 15000) + 5000);
 					customMessage = new ExpirationMessageItem("Notification number: " + messageCounter, MESSAGE_TYPE.values()[indexMessageType], delayInMS);
 				}
 				else
 				{
+					//normal way
 					customMessage = new MessageItem("Notification number: " + messageCounter, MESSAGE_TYPE.values()[indexMessageType]);
 				}
 		

@@ -357,6 +357,7 @@ public class MessageView extends BorderPane implements IMessageItemListener
 				if(aMessageItem instanceof ExpirationMessageItem)
 				{
 					TimerScheduler.addTimerTask((ExpirationMessageItem)aMessageItem);
+					((ExpirationMessageItem)aMessageItem).startTimeLine();
 				}
 				
 			}
