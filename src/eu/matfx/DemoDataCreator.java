@@ -6,7 +6,6 @@ import eu.matfx.listener.IMessageItemListener;
 import eu.matfx.message.MessageItem;
 import eu.matfx.message.ExpirationMessageItem;
 import eu.matfx.message.MESSAGE_TYPE;
-import javafx.application.Platform;
 
 public class DemoDataCreator extends Thread
 {

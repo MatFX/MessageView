@@ -1,6 +1,9 @@
 package eu.matfx.tools;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -8,23 +11,23 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 
 public class ResourceLoader 
 {
 	
 	private static final String GLOBAL_RESOURCE_PATH = "/resources/global/";
 	
+	private static final String ICONS = GLOBAL_RESOURCE_PATH + "/icons/";
 	
-	/*
-	 * Wer sich die stylsheet Laderei bei fx ausgedacht hat, gehört auch eine Watschn.
-	 */
-	private static final String RESOURCE_DESTINATION = "/resources/";
-	
+	public static final String SUFFIX_FILE = ".png";
 	
 	/**
 	 * globale Resourcen für das Grundlayout
 	 */
 	private static final String GLOBAL_CSS_RESOURCE_DESTINATION = GLOBAL_RESOURCE_PATH + "css/";
+	
+	private static final String RESOURCE_DESTINATION = "/resources/";
 	
 	public static URL getGlobalResource(String cssFileName) throws MalformedURLException
 	{
@@ -64,6 +67,37 @@ public class ResourceLoader
 		String complete = "file:/"+file.getAbsolutePath();
 		return  ClassLoader.getSystemResource(complete);
 	}
+	
+	public static Image getImageFromIconFolder(String fileName)
+	{
+		Image image = null;
+		
+		if(!fileName.contains(ResourceLoader.SUFFIX_FILE))
+			fileName = fileName + ResourceLoader.SUFFIX_FILE;
+		try
+		{
+			InputStream ins = ResourceLoader.getResourceStream(ICONS, fileName);
+			image = new Image(ins);
+			ins.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return image;
+	}
+	
+	public static InputStream getResourceStream(String pkname, String fname) throws FileNotFoundException
+	{
+		String resname = "" + pkname + "/" + fname;
+		File file = new File("");
+		
+		file = new File(file.getAbsoluteFile() + resname);
+		InputStream inputStream = new FileInputStream(file.getAbsolutePath());
+	
+		return inputStream;
+	}
+	
 	
 	
 	

@@ -8,6 +8,7 @@ import eu.matfx.tools.NoValidIndexException;
 import eu.matfx.tools.ResourceLoader;
 import eu.matfx.view.MessageView;
 import eu.matfx.view.listcell.DefaultMessageItemListCell;
+import eu.matfx.view.listcell.IconMessageItemListCell;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -18,10 +19,13 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 
 public class DemoMessageView extends Application 
@@ -37,21 +41,38 @@ public class DemoMessageView extends Application
 	private final String STANDARD = "standard";
 	
 	private final String CUSTOM = "custom";
+	
+	private ComboBox<String> listCellComboBox;
+	
+	private Button openView;
 
 	@Override
 	public void start(Stage primaryStage) 
 	{
 		try 
 		{
+			primaryStage.setTitle("DemoMessageView");
+			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>()
+			{
+
+				@Override
+				public void handle(WindowEvent event) {
+					System.exit(0);
+					
+				}
+				
+			});
+			
 			BorderPane root = new BorderPane();
-			Scene scene = new Scene(root,400,400);
+			Scene scene = new Scene(root, 250, 250);
+			
 			
 			HBox topBox = new HBox();
 			topBox.setSpacing(5);
 			topBox.setPadding(new Insets(10,10,10,10));
 			
 			
-			Button openView = new Button("open view");
+			openView = new Button("open view");
 			
 			openView.setOnAction(new EventHandler<ActionEvent>() 
 			{
@@ -61,13 +82,24 @@ public class DemoMessageView extends Application
 				{
 					messageView = new MessageView();
 					//example to change the rendering of the listView
-					messageView.getListView().setCellFactory(c -> new DefaultMessageItemListCell());
-					openView.setDisable(true);
-					languageChange.setDisable(true);
+					if(listCellComboBox.getSelectionModel().getSelectedItem().equals(CUSTOM))
+					{
+						messageView.getListView().setCellFactory(c -> new IconMessageItemListCell());
+					}
+					else
+					{
+						//Standard
+						messageView.getListView().setCellFactory(c -> new DefaultMessageItemListCell());
+					}
+					
+				
+					setComponentDisable(true);
+
 					testButton.setDisable(false);
 					messageView.showAndWait();
-					openView.setDisable(false);
-					languageChange.setDisable(false);
+					
+					setComponentDisable(false);
+					
 					if(demoDataCreator != null && demoDataCreator.isRunning())
 					{
 						testButton.fire();
@@ -113,6 +145,14 @@ public class DemoMessageView extends Application
 			
 			
 			topBox.getChildren().add(testButton);
+			root.setTop(topBox);
+			
+			GridPane gridPaneSetting = new GridPane();
+			gridPaneSetting.setPadding(new Insets(15,15,15,15));
+			gridPaneSetting.setHgap(5);
+			
+			gridPaneSetting.setVgap(5);
+			
 			
 			//example for language change at the view
 			languageChange = new ComboBox<String>();
@@ -154,11 +194,23 @@ public class DemoMessageView extends Application
 				}
 				
 			});
+			gridPaneSetting.add(new Label("choice language:"), 0, 0);
+			gridPaneSetting.add(languageChange, 1, 0);
+			
+			listCellComboBox = new ComboBox<String>();
+			listCellComboBox.getItems().add(STANDARD);
+			listCellComboBox.getItems().add(CUSTOM);
+			listCellComboBox.getSelectionModel().select(0);
+			
+			gridPaneSetting.add(new Label("choice list cell:"), 0, 1);
+			gridPaneSetting.add(listCellComboBox, 1, 1);
+			
+			
+			
 
-			topBox.getChildren().add(languageChange);
 			
-			
-			root.setTop(topBox);
+			root.setCenter(gridPaneSetting);
+		
 			try
 			{
 				ObservableList<CSSContainer> cssList = ResourceLoader.getGlobalCSSContainerList();
@@ -191,6 +243,13 @@ public class DemoMessageView extends Application
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	public void setComponentDisable(boolean isDisable)
+	{
+		openView.setDisable(isDisable);
+		languageChange.setDisable(isDisable);
+		listCellComboBox.setDisable(isDisable);
 	}
 	
 	public static void main(String[] args) {

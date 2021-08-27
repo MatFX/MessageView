@@ -89,7 +89,8 @@ public class MessageView extends BorderPane implements IMessageItemListener
 		
 		
 		GridPane gridPane = new GridPane();
-		gridPane.setGridLinesVisible(true);
+		//TODO raus
+		//gridPane.setGridLinesVisible(true);
 		gridPane.setHgap(10);
 		gridPane.setVgap(10);
 		gridPane.setPadding(new Insets(10, 10, 10, 10));
@@ -149,8 +150,16 @@ public class MessageView extends BorderPane implements IMessageItemListener
 		{
 
 			@Override
-			public void handle(ActionEvent arg0) {
+			public void handle(ActionEvent arg0) 
+			{
+				//
+				if(listViewMessageItem.getSelectionModel().getSelectedItem() instanceof ExpirationMessageItem)
+				{
+					((ExpirationMessageItem)listViewMessageItem.getSelectionModel().getSelectedItem()).stopTimeLine();
+				}
+				
 				listViewMessageItem.getItems().remove(listViewMessageItem.getSelectionModel().getSelectedItem());
+				
 				
 			}
 			
