@@ -71,11 +71,6 @@ public class MessageView extends BorderPane implements IMessageItemListener
 	 */
 	private boolean mousePointerIsInScene = false;
 	
-	private Timer timer;
-	
-	
-	//private Label expirationLabel;
-	
 	public MessageView()
 	{
 		
@@ -143,12 +138,6 @@ public class MessageView extends BorderPane implements IMessageItemListener
 		
 		gridPane.add(textArea, 1, 0, 1, 1);
 		
-		
-		HBox labelExpiration = new HBox();
-		
-		
-		
-		
 		HBox buttonBox = new HBox();
 		buttonBox.setPadding(new Insets(3,3,3,3));
 		
@@ -170,23 +159,7 @@ public class MessageView extends BorderPane implements IMessageItemListener
 		
 		gridPane.add(buttonBox, 1, 1, 1, 1);
 		
-		
-		
-		
-		
 		this.setCenter(gridPane);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
-		
 		
 		//listener für die Maus
 		this.setOnMousePressed(new EventHandler<MouseEvent>(){

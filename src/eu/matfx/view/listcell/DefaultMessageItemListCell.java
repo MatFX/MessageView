@@ -52,7 +52,7 @@ public class DefaultMessageItemListCell extends ListCell<MessageItem>
         	
         	setGraphic(sample);
         	
-        	
+        	//creepy way to change the text
         	if(item instanceof ExpirationMessageItem)
         	{
         		((ExpirationMessageItem)item).setTextProperty(this.textProperty());
@@ -66,8 +66,7 @@ public class DefaultMessageItemListCell extends ListCell<MessageItem>
         {
         	setGraphic(null);
         	setText(null);
-     		
-        }
+     	}
        
 	}
 

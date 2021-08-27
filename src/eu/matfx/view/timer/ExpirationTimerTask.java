@@ -21,7 +21,6 @@ public class ExpirationTimerTask extends TimerTask
 	{
 		this.iMessageListener = iMessageListener;
 		this.expirationMessageItem = expirationMessageItem;
-		
 	}
 
 	@Override

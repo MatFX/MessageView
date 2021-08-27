@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 
 /**
- * Drei Buttons für minimieren, maximieren und close
+ * three buttons, minimize, maximize and close
  * @author m.goerlich
  *
  */
