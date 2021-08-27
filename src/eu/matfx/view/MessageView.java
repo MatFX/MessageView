@@ -272,7 +272,17 @@ public class MessageView extends BorderPane implements IMessageItemListener
 			ObservableList<CSSContainer> cssList = ResourceLoader.getGlobalCSSContainerList();
 			CSSContainer cssContainer = null;
 			if(cssList != null && cssList.size() > 0)
-				cssContainer = cssList.get(0);
+			{
+				for(CSSContainer temp : cssList)
+				{
+					if(temp.getFilename().contains("technical"))
+					{
+						cssContainer =temp;
+						break;
+					}
+					
+				}
+			}
 			
 			if(cssContainer != null)
 			{
