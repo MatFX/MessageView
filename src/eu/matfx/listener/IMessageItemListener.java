@@ -8,8 +8,10 @@ import eu.matfx.message.MessageItem;
  * @author m.goerlich
  *
  */
-public interface IAMessageItemListener 
+public interface IMessageItemListener 
 {
-	public void setAMessageItem(MessageItem aMessageItem);
+	public void setMessageItem(MessageItem aMessageItem);
+	
+	
 
 }

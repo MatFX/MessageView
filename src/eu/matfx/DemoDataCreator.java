@@ -2,8 +2,9 @@ package eu.matfx;
 
 import java.util.concurrent.TimeUnit;
 
-import eu.matfx.listener.IAMessageItemListener;
+import eu.matfx.listener.IMessageItemListener;
 import eu.matfx.message.MessageItem;
+import eu.matfx.message.ExpirationMessageItem;
 import eu.matfx.message.MESSAGE_TYPE;
 import javafx.application.Platform;
 
@@ -13,10 +14,10 @@ public class DemoDataCreator extends Thread
 	
 	private int messageCounter = 0;
 	
-	private IAMessageItemListener iAMessageListener;
+	private IMessageItemListener iAMessageListener;
 	
 	
-	public DemoDataCreator(IAMessageItemListener iAMessageListener)
+	public DemoDataCreator(IMessageItemListener iAMessageListener)
 	{
 		this.iAMessageListener = iAMessageListener;
 		this.runner = true;
@@ -32,8 +33,20 @@ public class DemoDataCreator extends Thread
 			{
 				messageCounter++;
 				
-				MessageItem customMessage = new MessageItem("Notification number: " + messageCounter, MESSAGE_TYPE.CUSTOM);
-				iAMessageListener.setAMessageItem(customMessage);
+				int indexMessageType = (int) (Math.random() * MESSAGE_TYPE.values().length);
+				MessageItem customMessage = null;
+				if(MESSAGE_TYPE.values()[indexMessageType] == MESSAGE_TYPE.NOTIFICATION)
+				{
+					long delayInMS = (long) ((Math.random() * 15000) + 5000);
+					customMessage = new ExpirationMessageItem("Notification number: " + messageCounter, MESSAGE_TYPE.values()[indexMessageType], delayInMS);
+				}
+				else
+				{
+					customMessage = new MessageItem("Notification number: " + messageCounter, MESSAGE_TYPE.values()[indexMessageType]);
+				}
+				
+				//MessageItem customMessage = new MessageItem("Notification number: " + messageCounter, MESSAGE_TYPE.values()[indexMessageType]);
+				iAMessageListener.setMessageItem(customMessage);
 				
 				/*
 				Platform.runLater(new Runnable() 

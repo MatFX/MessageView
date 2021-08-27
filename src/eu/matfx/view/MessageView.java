@@ -3,7 +3,7 @@ package eu.matfx.view;
 
 import java.io.File;
 
-import eu.matfx.listener.IAMessageItemListener;
+import eu.matfx.listener.IMessageItemListener;
 import eu.matfx.message.MessageItem;
 import eu.matfx.tools.CSSContainer;
 import eu.matfx.tools.ResourceLoader;
@@ -19,6 +19,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
@@ -40,7 +41,7 @@ import javafx.stage.StageStyle;
  * @author m.goerlich
  *
  */
-public class MessageView extends BorderPane implements IAMessageItemListener
+public class MessageView extends BorderPane implements IMessageItemListener
 {
 	private Stage stage;
 	
@@ -68,11 +69,14 @@ public class MessageView extends BorderPane implements IAMessageItemListener
 	 */
 	private boolean mousePointerIsInScene = false;
 	
+	//private Label expirationLabel;
+	
 	public MessageView()
 	{
 		
 		stage = new Stage();
 		//modal damit der Anwender nicht zwischendurch was anderes aufruft.
+		//TODO
 		//stage.initModality(Modality.APPLICATION_MODAL);
 		
 		HBox topHBox = new HBox();
@@ -92,10 +96,10 @@ public class MessageView extends BorderPane implements IAMessageItemListener
 		
 		//TODO ?
 		ColumnConstraints column1 = new ColumnConstraints();
-		column1.setPercentWidth(35);
+		column1.setPercentWidth(40);
 		
 		ColumnConstraints column2 = new ColumnConstraints();
-		column2.setPercentWidth(65);
+		column2.setPercentWidth(60);
 		gridPane.getColumnConstraints().addAll(column1, column2);
 		
 	    RowConstraints row1 = new RowConstraints();
@@ -126,9 +130,17 @@ public class MessageView extends BorderPane implements IAMessageItemListener
 		gridPane.add(listViewMessageItem, 0, 0, 1, 2);
 		
 		textArea = new TextArea();
+		textArea.setWrapText(true);
+		textArea.setEditable(false);
 		HBox.setHgrow(textArea, Priority.ALWAYS);
 		
 		gridPane.add(textArea, 1, 0, 1, 1);
+		
+		
+		HBox labelExpiration = new HBox();
+		
+		
+		
 		
 		HBox buttonBox = new HBox();
 		buttonBox.setPadding(new Insets(3,3,3,3));
@@ -294,9 +306,6 @@ public class MessageView extends BorderPane implements IAMessageItemListener
 		//ab nun wird gewartet bis Anwender mit einem Button Klick etwas bestätigt
 		stage.showAndWait();
 		
-		//Hier erfolgt keine Auswertung der Auswahl, die wird von außerhalb dann gemacht
-		
-		//hier steht dann der Wert drin und folglich kann die aufrufende Klasse entscheiden was zu tun ist.
 		return buttonType;
 	}
 	
@@ -324,7 +333,7 @@ public class MessageView extends BorderPane implements IAMessageItemListener
 	 * The processing of the param MessageItem is in a runnable jfx application thread embedded.
 	 */
 	@Override
-	public void setAMessageItem(MessageItem aMessageItem) 
+	public void setMessageItem(MessageItem aMessageItem) 
 	{
 		
 		Platform.runLater(new Runnable() 
