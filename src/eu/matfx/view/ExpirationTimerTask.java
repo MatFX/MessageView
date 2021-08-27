@@ -22,15 +22,10 @@ public class ExpirationTimerTask extends TimerTask
 	@Override
 	public void run() 
 	{
-		System.out.println("bin bei run");
 		synchronized(this.iMessageListener)
 		{
-			System.out.println("versuche zu entfernen");
 			this.iMessageListener.removeMessageItemListener(expirationMessageItem);
 		}
-		
-	
-
 	}
 
 }

@@ -27,9 +27,5 @@ public class TimerScheduler
 	{
 		instance.timer.schedule(new ExpirationTimerTask(instance.iMessageListener, expirationMessageItem), expirationMessageItem.getDelayToExpirationInMS());
 	}
-	
-	
-	
-	
 
 }

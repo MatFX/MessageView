@@ -39,30 +39,16 @@ public class DemoDataCreator extends Thread
 				{
 					long delayInMS = (long) ((Math.random() * 15000) + 5000);
 					customMessage = new ExpirationMessageItem("Notification number: " + messageCounter, MESSAGE_TYPE.values()[indexMessageType], delayInMS);
-					iAMessageListener.setMessageItem(customMessage);
 				}
 				else
 				{
-					//customMessage = new MessageItem("Notification number: " + messageCounter, MESSAGE_TYPE.values()[indexMessageType]);
+					customMessage = new MessageItem("Notification number: " + messageCounter, MESSAGE_TYPE.values()[indexMessageType]);
 				}
+		
+				iAMessageListener.setMessageItem(customMessage);
 				
-				//MessageItem customMessage = new MessageItem("Notification number: " + messageCounter, MESSAGE_TYPE.values()[indexMessageType]);
-				//iAMessageListener.setMessageItem(customMessage);
-				
-				/*
-				Platform.runLater(new Runnable() 
-				{
-
-					@Override
-					public void run() {
-						iAMessageListener.setAMessageItem(customMessage);
-						
-					}
-
-				});*/
-				
-				
-				int randomValueSleep =  (int)(Math.random() * 3000 + 1);
+								
+				int randomValueSleep =  (int)(Math.random() * 3000 + 1000);
 				
 				if(runner)
 					TimeUnit.MILLISECONDS.sleep(randomValueSleep);
