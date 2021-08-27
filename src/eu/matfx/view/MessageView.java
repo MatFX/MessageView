@@ -2,8 +2,10 @@ package eu.matfx.view;
 
 
 import java.io.File;
+import java.util.Timer;
 
 import eu.matfx.listener.IMessageItemListener;
+import eu.matfx.message.ExpirationMessageItem;
 import eu.matfx.message.MessageItem;
 import eu.matfx.tools.CSSContainer;
 import eu.matfx.tools.ResourceLoader;
@@ -19,7 +21,6 @@ import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
@@ -68,6 +69,9 @@ public class MessageView extends BorderPane implements IMessageItemListener
 	 * store the location of the mouse
 	 */
 	private boolean mousePointerIsInScene = false;
+	
+	private Timer timer;
+	
 	
 	//private Label expirationLabel;
 	
@@ -266,7 +270,7 @@ public class MessageView extends BorderPane implements IMessageItemListener
 		});
 		
 		
-		
+		TimerScheduler.addMessageItemListener(this);
 		
 		
 	}
@@ -350,6 +354,10 @@ public class MessageView extends BorderPane implements IMessageItemListener
 					changeRightSideView(aMessageItem);
 				}
 			
+				if(aMessageItem instanceof ExpirationMessageItem)
+				{
+					TimerScheduler.addTimerTask((ExpirationMessageItem)aMessageItem);
+				}
 				
 			}
 			
@@ -365,6 +373,29 @@ public class MessageView extends BorderPane implements IMessageItemListener
 		listViewMessageItem.getSelectionModel().select(aMessageItem);
 		textArea.setText(aMessageItem.getContent());
 		closeMessage.setDisable(false);
+	}
+
+	@Override
+	public void removeMessageItemListener(MessageItem messageItem)
+	{
+		Platform.runLater(new Runnable() 
+		{
+			@Override
+			public void run() 
+			{
+				//if selected, clear the view
+				if(listViewMessageItem.getSelectionModel().getSelectedItem().equals(messageItem))
+				{
+					textArea.setText("");
+					closeMessage.setDisable(true);
+					
+				}
+				listViewMessageItem.getItems().remove(messageItem);
+			}
+			
+
+		});
+		
 	}
 
 }

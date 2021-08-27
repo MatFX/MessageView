@@ -39,14 +39,15 @@ public class DemoDataCreator extends Thread
 				{
 					long delayInMS = (long) ((Math.random() * 15000) + 5000);
 					customMessage = new ExpirationMessageItem("Notification number: " + messageCounter, MESSAGE_TYPE.values()[indexMessageType], delayInMS);
+					iAMessageListener.setMessageItem(customMessage);
 				}
 				else
 				{
-					customMessage = new MessageItem("Notification number: " + messageCounter, MESSAGE_TYPE.values()[indexMessageType]);
+					//customMessage = new MessageItem("Notification number: " + messageCounter, MESSAGE_TYPE.values()[indexMessageType]);
 				}
 				
 				//MessageItem customMessage = new MessageItem("Notification number: " + messageCounter, MESSAGE_TYPE.values()[indexMessageType]);
-				iAMessageListener.setMessageItem(customMessage);
+				//iAMessageListener.setMessageItem(customMessage);
 				
 				/*
 				Platform.runLater(new Runnable() 

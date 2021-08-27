@@ -12,6 +12,6 @@ public interface IMessageItemListener
 {
 	public void setMessageItem(MessageItem aMessageItem);
 	
-	
+	public void removeMessageItemListener(MessageItem messageItem);
 
 }
