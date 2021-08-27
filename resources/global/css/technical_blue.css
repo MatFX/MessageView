@@ -1,0 +1,126 @@
+/** example css; not complete */  
+.root
+{
+	-fx-smooth: true;
+	/**
+	 * Die Grundfarbe von diese werden die späteren Properties teilweise abgeleitet
+	 * -fx-base: #8aa9db;
+	 */
+	
+	-fx-base: #c4d4ed;
+	-fx-disabled-opacity: 0.4;
+}
+
+.menu-bar {
+    -fx-background-radius: 8 8 0 0;
+}
+
+/** könnte vielleicht noch zu Problemen kommen wenn andere Kontextmenüs benötigt werden. */
+.context-menu {
+    
+    -fx-background-radius: 0 0 8 8;
+    -fx-background-color: #d8e2f3; 
+}
+
+#entry_scene
+{
+	 -fx-background-color:
+	   -fx-shadow-highlight-color, 
+       -fx-outer-border, 
+       -fx-inner-border;
+     -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+  	 -fx-background-radius: 7px, 7px, 7px, 7px;
+  	 
+  	 -fx-font-family: sans-serif;
+	 -fx-font-weight: bolder;
+	 
+}
+
+.button {
+    -fx-text-fill: linear-gradient(to bottom,  #638ccf 15%, #3665b0  );
+}
+
+
+#label_colorized_text {
+    -fx-text-fill: #2a4e89;
+}
+
+
+#roundButton
+{
+	-fx-background-radius: 5em;
+	-fx-min-width: 25px; 
+	-fx-min-height: 25px;
+	-fx-max-width: 25px; 
+	-fx-max-height: 25px;
+	
+	-fx-font-weight: bold;
+}
+
+
+
+
+/* alternative für listview deren Element selektiert aber die ListView nicht den Fokus besitzt
+ * wird benötigt für die Verschiebung der Reihenfolge bei den Zuweisungsinhalten eines Timers.
+ */
+.own-list-cell:filled:selected:focused,
+.own-list-cell:filled:selected,
+.list-view:horizontal > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected {
+    -fx-background: -fx-accent;
+    -fx-background-color: -fx-focus-color, -fx-cell-focus-inner-border, -fx-selection-bar;
+    -fx-background-insets: 0, 1, 2;
+    -fx-text-fill: -fx-selection-bar-text;
+}
+
+#button_not_saved{
+	
+	
+	-fx-text-fill: linear-gradient(to bottom,  #ff8080 15%, #cc0000  );
+    /*
+    -fx-font-size: 8pt;
+    -fx-font-family: "Verdana";
+    -fx-font-weight: bold;
+    -fx-text-fill: red;
+     */
+   	-fx-opacity: 0.9;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    /* if outer border should be 10 radius */
+    -fx-background-radius: 10 10 0 0, 9 9 0 0, 8 8 0 0;
+}
+
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-border-radius: 9 9 0 0, 8 8 0 0;
+}
+
+#togglebutton_activated{
+	
+	
+	-fx-text-fill: linear-gradient(to bottom,  #00cc44 15%, #006622  );
+    /*
+    -fx-font-size: 8pt;
+    -fx-font-family: "Verdana";
+    -fx-font-weight: bold;
+    -fx-text-fill: red;
+     */
+   	-fx-opacity: 0.9;
+}
+
+.toggle-button {
+    -fx-text-fill: linear-gradient(to bottom,  #638ccf 15%, #3665b0  );
+}
+
+/* Für die Alexa Tabelle wo nicht alle Spalten editierbar sind. */
+#alex_table .table-cell
+{
+    -fx-background-color: #d8e2f380; 
+  
+}
+/* Ist mit dem obigen ein Problem, normalerweise müsste man den obigen zurücksezten bei Selektion einer Zeile */
+#alex_table:row-selection .table-row-cell:selected 
+{
+    -fx-background-color: #0078D7; 
+  
+}
+

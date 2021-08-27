@@ -1,0 +1,307 @@
+/** example css; not complete */    
+.root
+{
+	-fx-smooth: true;
+	/**
+	 * Die Grundfarbe von diese werden die späteren Properties teilweise abgeleitet
+	 */
+	-fx-base: #3e3e3e;
+	
+	-fx-disabled-opacity: 0.4;
+	
+	 
+	
+}
+
+.button{
+	
+    -fx-font-size: 8pt;
+    -fx-font-family: "Verdana";
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+   	-fx-opacity: 0.9;
+}
+
+.button:disabled {
+    -fx-opacity: -fx-disabled-opacity;
+}
+
+.toggle-button{
+	-fx-font-size: 8pt;
+    -fx-font-family: "Verdana";
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+   	-fx-opacity: 0.9;
+}
+
+.toggle-button:disabled {
+    -fx-opacity: -fx-disabled-opacity;
+}
+
+
+.label {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Verdana";
+    -fx-font-weight: bold;
+   	-fx-opacity: 0.9;
+}
+
+.text-field {
+	-fx-font-size: 10pt;
+    -fx-font-family: "Verdana";
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+   	-fx-opacity: 0.9;
+}
+
+.tab-pane:top *.tab-header-area {
+    -fx-background-insets: 0, 0 0 1 0;
+ /* -fx-padding: 0.416667em 0.166667em 0.0em 0.833em; /* 5 2 0 10 */
+    -fx-padding: 0.416667em 0.166667em 0.0em 0.0em; /* overridden as 5 2 0 0 */
+}
+
+
+
+#window_close_button
+{
+	-fx-background-color: #FF000000;
+	-fx-background-radius: 36px;  
+    -fx-min-width: 36px; 
+    -fx-min-height: 36px;
+    -fx-max-width: 36px;                 
+    -fx-max-height: 36px;
+   
+}
+
+
+#window_maximize_button
+{
+	
+	-fx-background-color: #169b0000;
+
+	-fx-background-radius: 36px;  
+    -fx-min-width: 36px; 
+    -fx-min-height: 36px;
+    -fx-max-width: 36px;                 
+    -fx-max-height: 36px;
+
+}
+
+
+#window_minimize_button
+{
+	-fx-background-color: #169b0000;
+	-fx-background-radius: 36px;  
+    -fx-min-width: 36px; 
+    -fx-min-height: 36px;
+    -fx-max-width: 	36px;                 
+    -fx-max-height: 36px;
+   
+}
+
+
+#language_scene
+{
+	 -fx-background-color:
+       -fx-shadow-highlight-color, 
+       -fx-outer-border, 
+       -fx-inner-border;
+     /*   -fx-body-color; */
+  	-fx-background-insets: 0 0 -1 0, 0, 1, 2;
+  	-fx-background-radius: 7px, 7px, 7px, 7px;
+	/*
+	 *   -fx-body-color;
+	-fx-background-radius:15;
+	-fx-padding: 10;
+	-fx-effect: innershadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0, 0, 0);
+	*/
+}
+
+#entry_scene
+{
+	 -fx-background-color:
+       -fx-shadow-highlight-color, 
+       -fx-outer-border, 
+       -fx-inner-border;
+     /*   -fx-body-color; */
+  	-fx-background-insets: 0 0 -1 0, 0, 1, 2;
+  	-fx-background-radius: 7px, 7px, 7px, 7px;
+	/*
+	 *   -fx-body-color;
+	-fx-background-radius:15;
+	-fx-padding: 10;
+	-fx-effect: innershadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0, 0, 0);
+	*/
+}
+
+#roundButton
+{
+	-fx-background-radius: 5em;
+	-fx-min-width: 25px; 
+	-fx-min-height: 25px;
+	-fx-max-width: 25px; 
+	-fx-max-height: 25px;
+	-fx-font-weight: bold;
+	
+}
+
+
+
+
+.TopContentPane .label
+{
+	-fx-font-size: 7pt;
+    -fx-font-family: "Verdana";
+   	-fx-opacity: 1.0;
+   	-fx-text-fill: #FFFFFF;
+}
+
+#label_directory.label 
+{
+	-fx-font-size: 8pt;
+}
+
+#tiny_textfield
+{
+	-fx-font-size: 8pt;
+    -fx-font-family: "Verdana";
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+   	-fx-opacity: 0.9;
+   	-fx-padding: 3pt;
+   	
+}
+
+/**
+ * Die Schriftfarbe und Größe für die Felder mit dem LCD touch 
+ */
+#lcd_label
+{
+	-fx-font-size: 9pt;
+    -fx-font-family: "Verdana";
+   	-fx-opacity: 0.5;
+   	-fx-text-fill: #000000;
+}
+
+/**
+ * Kleinere Darstellung ansonsten wie die lcd_label Geschichte
+ */
+#lcd_minor_label
+{
+	-fx-font-size: 8pt;
+    -fx-font-family: "Verdana";
+   	-fx-opacity: 0.5;
+   	-fx-text-fill: #000000;
+}
+
+
+
+.vertical_menu_separator .line {
+  -fx-border-color: linear-gradient(from 25% 25% to 100% 100%,reflect, #b0b0b3, #636365) ;
+  -fx-border-width: 1 0 0 1 ;
+}
+
+#menue_top_separator .line 
+{
+ 
+}
+
+/**
+ * Standardslider der einen vergrößerten "Anfasser" besitzt. Damit der Anwender diesen auch mit den Finger bedienen kann.
+ */
+.slider 
+{
+	-fx-font: 14px "Sans-Serif";
+	-fx-font-weight: bold;
+}
+
+.slider .track {
+    -fx-pref-height: 1.5em;
+}
+
+.slider:vertical .track {
+    -fx-pref-width: 2em;
+}
+
+.slider .axis .axis-tick-mark, .slider .axis .axis-minor-tick-mark {
+    -fx-fill: null;
+    -fx-stroke: white;
+    -fx-stroke-width: 0.2em;
+    
+}
+
+.slider:focused .thumb {
+	-fx-background-color:
+	-fx-focus-color, 
+	derive(-fx-color,-36%),
+    derive(-fx-color,73%),
+	linear-gradient(to bottom, derive(-fx-color,-19%), derive(-fx-color, 61%));
+       
+    /* was hat die hintergrundfarbe bzw. die focusColor mit insets zu tun */
+   -fx-background-insets: -1, 1, 2;
+   -fx-pref-width: 3em;
+   -fx-background-radius: 4em; /* makes sure this remains circular */
+   -fx-padding: 0.583333em; /* 7 */
+}
+
+
+.slider > .thumb {
+	-fx-background-color:
+        derive(-fx-color,-36%),
+        derive(-fx-color,73%),
+        linear-gradient(to bottom, derive(-fx-color,-19%),derive(-fx-color,61%));
+        
+    -fx-background-insets: 0, 1, 2;
+  	-fx-pref-width: 3em;
+    -fx-pref-height: 3em;
+    -fx-background-radius: 4em; /* makes sure this remains circular */
+    -fx-padding: 0.583333em; /* 7 */
+}
+
+#SlideableButtonControl
+{
+	
+	 -fx-background-color:
+       -fx-shadow-highlight-color, 
+       -fx-outer-border, 
+       -fx-inner-border;
+     /*   -fx-body-color; */
+  	-fx-background-insets: 0 0 -1 0, 0, 1, 2;
+  	-fx-background-radius: 7px, 7px, 7px, 7px;
+}
+
+/*
+ * Table header font size 
+ */
+.table-view .column-header-background .label{
+     -fx-background-color: transparent; 
+    -fx-font-size: 8pt;
+    -fx-font-family: "Verdana";
+    -fx-text-fill: white;
+   
+}
+
+/* alternative für listview deren Element selektiert aber die ListView nicht den Fokus besitzt
+ * wird benötigt für die Verschiebung der Reihenfolge bei den Zuweisungsinhalten eines Timers.
+ */
+.own-list-cell:filled:selected:focused,
+.own-list-cell:filled:selected,
+.list-view:horizontal > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected {
+    -fx-background: -fx-accent;
+    -fx-background-color: -fx-focus-color, -fx-cell-focus-inner-border, -fx-selection-bar;
+    -fx-background-insets: 0, 1, 2;
+    -fx-text-fill: -fx-selection-bar-text;
+}
+
+#button_not_saved{
+	
+    -fx-font-size: 8pt;
+    -fx-font-family: "Verdana";
+    -fx-font-weight: bold;
+    -fx-text-fill: red;
+   	-fx-opacity: 0.9;
+}
+
+
+
+
