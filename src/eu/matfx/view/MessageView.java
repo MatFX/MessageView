@@ -10,6 +10,7 @@ import eu.matfx.message.MessageItem;
 import eu.matfx.tools.CSSContainer;
 import eu.matfx.tools.ResourceLoader;
 import eu.matfx.tools.UITools;
+import eu.matfx.view.timer.TimerScheduler;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -123,6 +124,8 @@ public class MessageView extends BorderPane implements IMessageItemListener
 				if(arg2 != null)
 				{
 					textArea.setText(arg2.getContent());
+					//und freischalten, evtl. war diese gesperrt
+					closeMessage.setDisable(false);
 				}
 				
 			}
@@ -389,7 +392,6 @@ public class MessageView extends BorderPane implements IMessageItemListener
 				{
 					textArea.setText("");
 					closeMessage.setDisable(true);
-					
 				}
 				listViewMessageItem.getItems().remove(messageItem);
 			}

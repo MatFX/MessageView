@@ -9,7 +9,7 @@ package eu.matfx.message;
 public class MessageItem 
 {
 	/**
-	 * Headline will be shown in the listView
+	 * Headline will be shown in the listView; its filled with individuell description or the name of the MESSAGE_TYPE
 	 */
 	private String headline;
 	
@@ -45,7 +45,6 @@ public class MessageItem
 	public void setMessageType(MESSAGE_TYPE messageType) {
 		this.messageType = messageType;
 	}
-	
 
 	public String getHeadline() {
 		return headline;

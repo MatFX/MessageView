@@ -1,4 +1,4 @@
-package eu.matfx.view;
+package eu.matfx.view.timer;
 
 import java.util.Timer;
 

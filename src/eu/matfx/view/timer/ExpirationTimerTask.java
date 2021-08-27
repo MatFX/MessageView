@@ -1,10 +1,15 @@
-package eu.matfx.view;
+package eu.matfx.view.timer;
 
 import java.util.TimerTask;
 
 import eu.matfx.listener.IMessageItemListener;
 import eu.matfx.message.ExpirationMessageItem;
 
+/**
+ * Every ExpirationMessageItem need a TimerTask to remove the element from the ListView after expiration time is reached.
+ * @author m.goerlich
+ *
+ */
 public class ExpirationTimerTask extends TimerTask 
 {
 	
