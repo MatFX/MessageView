@@ -1,13 +1,12 @@
 package eu.matfx.view.listcell;
 
-
-import eu.matfx.message.DefaultMessageItem;
+import eu.matfx.message.MessageItem;
 import javafx.scene.control.ListCell;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 
-public class DefaultMessageItemListCell extends AMessageItemListCell<DefaultMessageItem>
+public class DefaultMessageItemListCell extends ListCell<MessageItem>
 {
 	
 	private final Color CUSTOM = Color.web("#6699ff");
@@ -22,11 +21,10 @@ public class DefaultMessageItemListCell extends AMessageItemListCell<DefaultMess
 	
 	
 	@Override
-	protected void updateItem(DefaultMessageItem item, boolean empty)
+	protected void updateItem(MessageItem item, boolean empty)
 	{
 		super.updateItem(item, empty);
-		System.out.println("update Item " + item);
-        setGraphic(null);
+		setGraphic(null);
         setText(null);
         
         if(item!=null)
@@ -53,8 +51,7 @@ public class DefaultMessageItemListCell extends AMessageItemListCell<DefaultMess
         	}
         	
         	setGraphic(sample);
-        	//TODO
-        	setText(item.getMessageType().name());
+        	setText(item.getHeadline());
         	
        	}
 		

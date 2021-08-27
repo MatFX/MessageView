@@ -49,7 +49,8 @@ public class DemoMessageView extends Application
 				public void handle(ActionEvent arg0) 
 				{
 					messageView = new MessageView();
-					//messageView.setListCellFactory(new DefaultMessageItemListCell());
+					//example to change the rendering of the listView
+					messageView.getListView().setCellFactory(c -> new DefaultMessageItemListCell());
 					openView.setDisable(true);
 					testButton.setDisable(false);
 					messageView.showAndWait();

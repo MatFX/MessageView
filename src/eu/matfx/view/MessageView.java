@@ -4,17 +4,13 @@ package eu.matfx.view;
 import java.io.File;
 
 import eu.matfx.listener.IAMessageItemListener;
-import eu.matfx.message.AMessageItem;
-import eu.matfx.message.DefaultMessageItem;
+import eu.matfx.message.MessageItem;
 import eu.matfx.tools.CSSContainer;
 import eu.matfx.tools.ResourceLoader;
 import eu.matfx.tools.UITools;
-import eu.matfx.view.listcell.AMessageItemListCell;
-import eu.matfx.view.listcell.DefaultMessageItemListCell;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -33,7 +29,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -62,11 +57,16 @@ public class MessageView extends BorderPane implements IAMessageItemListener
 	
 	private WindowToolPane toolPane;
 	
-	private ListView<AMessageItem> listViewMessageItem;
+	private ListView<MessageItem> listViewMessageItem;
 	
 	private TextArea textArea;
 	
 	private Button closeMessage;
+	
+	/**
+	 * store the location of the mouse
+	 */
+	private boolean mousePointerIsInScene = false;
 	
 	public MessageView()
 	{
@@ -105,18 +105,23 @@ public class MessageView extends BorderPane implements IAMessageItemListener
 	    gridPane.getRowConstraints().addAll(row1, row2);
 		
 		
-		listViewMessageItem = new ListView<AMessageItem>();
-		/*
-		listViewMessageItem.selectionModelProperty().addListener(new ChangeListener<AMessageItem>() {
+		listViewMessageItem = new ListView<MessageItem>();
+		listViewMessageItem.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<MessageItem>() 
+		{
 
 			@Override
-			public void changed(ObservableValue<? extends AMessageItem> arg0, AMessageItem arg1, AMessageItem arg2) {
-				// TODO Auto-generated method stub
+			public void changed(ObservableValue<? extends MessageItem> arg0, MessageItem arg1, MessageItem arg2) 
+			{
+				if(arg2 != null)
+				{
+					textArea.setText(arg2.getContent());
+				}
 				
 			}
 			
-		});*/
-		//listViewMessageItem.setCellFactory(c -> new DefaultMessageItemListCell());
+		});
+		
+		
 		
 		gridPane.add(listViewMessageItem, 0, 0, 1, 2);
 		
@@ -129,7 +134,7 @@ public class MessageView extends BorderPane implements IAMessageItemListener
 		buttonBox.setPadding(new Insets(3,3,3,3));
 		
 		
-		closeMessage = new Button("close");
+		closeMessage = new Button("close message");
 		closeMessage.setDisable(true);
 		closeMessage.setOnAction(new EventHandler<ActionEvent>() 
 		{
@@ -196,6 +201,29 @@ public class MessageView extends BorderPane implements IAMessageItemListener
 			}
 			
 		});
+		this.setOnMouseEntered(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				mousePointerIsInScene = true;
+				
+			}
+			
+		});
+		
+		this.setOnMouseExited(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				mousePointerIsInScene = false;
+				
+				//TODO ? wenn er draußen ist, dann ist der zuletzt erhaltene darzustellen
+				
+				
+			}
+			
+		});
+		
 		
 		this.setOnMouseMoved(new EventHandler<MouseEvent>(){
 
@@ -272,34 +300,62 @@ public class MessageView extends BorderPane implements IAMessageItemListener
 		return buttonType;
 	}
 	
-	public void setCellFactory(AMessageItemListCell itemListCell)
+	/**
+	 * to override from outside the cellFactory
+	 * @return
+	 */
+	public ListView<MessageItem> getListView()
 	{
-		listViewMessageItem.setCellFactory(c -> itemListCell);
-		
+		return listViewMessageItem;
 	}
+	
+	/**
+	 * to change text from outside
+	 * @return
+	 */
+	public Button getCloseMessageButton()
+	{
+		return this.closeMessage;
+	}
+	
+	
 
+	/**
+	 * The processing of the param MessageItem is in a runnable jfx application thread embedded.
+	 */
 	@Override
-	public void setAMessageItem(AMessageItem aMessageItem) 
+	public void setAMessageItem(MessageItem aMessageItem) 
 	{
 		
-		listViewMessageItem.getItems().add(aMessageItem);
-		listViewMessageItem.getSelectionModel().select(aMessageItem);
-		textArea.setText(((DefaultMessageItem)aMessageItem).getContent());
-		
-		closeMessage.setDisable(false);
-		
-		/* TODO hier oder von aufrufender Klasse?
 		Platform.runLater(new Runnable() 
 		{
 
 			@Override
 			public void run() {
-				System.out.println("listview aufruf");
+				listViewMessageItem.getItems().add(aMessageItem);
+				
+				//change the selections state only, when the mouse pointer outside the dialog
+				
+				if(!mousePointerIsInScene)
+				{
+					changeRightSideView(aMessageItem);
+				}
 			
 				
 			}
 			
-		});*/
+		});
+	}
+
+	/**
+	 * refresh the right side with the param MessageItem
+	 * @param aMessageItem
+	 */
+	protected void changeRightSideView(MessageItem aMessageItem) 
+	{
+		listViewMessageItem.getSelectionModel().select(aMessageItem);
+		textArea.setText(aMessageItem.getContent());
+		closeMessage.setDisable(false);
 	}
 
 }

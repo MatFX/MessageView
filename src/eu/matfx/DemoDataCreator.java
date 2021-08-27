@@ -3,7 +3,7 @@ package eu.matfx;
 import java.util.concurrent.TimeUnit;
 
 import eu.matfx.listener.IAMessageItemListener;
-import eu.matfx.message.AMessageItem;
+import eu.matfx.message.MessageItem;
 import eu.matfx.message.MESSAGE_TYPE;
 import javafx.application.Platform;
 
@@ -32,8 +32,10 @@ public class DemoDataCreator extends Thread
 			{
 				messageCounter++;
 				
-				AMessageItem customMessage = AMessageItem.createMessageItem("Mitteilung Nummer: " + messageCounter, MESSAGE_TYPE.CUSTOM);
+				MessageItem customMessage = new MessageItem("Notification number: " + messageCounter, MESSAGE_TYPE.CUSTOM);
+				iAMessageListener.setAMessageItem(customMessage);
 				
+				/*
 				Platform.runLater(new Runnable() 
 				{
 
@@ -43,7 +45,7 @@ public class DemoDataCreator extends Thread
 						
 					}
 
-				});
+				});*/
 				
 				
 				int randomValueSleep =  (int)(Math.random() * 3000 + 1);

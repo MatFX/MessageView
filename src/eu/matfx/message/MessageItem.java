@@ -6,16 +6,28 @@ package eu.matfx.message;
  * @author m.goerlich
  *
  */
-public abstract class AMessageItem 
+public class MessageItem 
 {
+	/**
+	 * Headline will be shown in the listView
+	 */
+	private String headline;
+	
 	private String content;
 	
 	private MESSAGE_TYPE messageType;
 	
-	protected AMessageItem(String content, MESSAGE_TYPE messageType)
+	public MessageItem(String content, MESSAGE_TYPE messageType)
 	{
 		this.content = content;
 		this.messageType = messageType;
+		this.headline = messageType.name();
+	}
+	
+	public MessageItem(String headline, String content, MESSAGE_TYPE messageType)
+	{
+		this(content, messageType);
+		this.headline = headline;
 	}
 	
 	public String getContent() {
@@ -34,17 +46,15 @@ public abstract class AMessageItem
 		this.messageType = messageType;
 	}
 	
-	
-	public static AMessageItem createMessageItem(String content, MESSAGE_TYPE messageType)
-	{
-		switch(messageType)
-		{
-//			case CUSTOM:
-//				return new CustomMessageItem(content);
-			default:
-				return new DefaultMessageItem(content, messageType);
-				
-		}
+
+	public String getHeadline() {
+		return headline;
 	}
+
+	public void setHeadline(String headline) {
+		this.headline = headline;
+	}
+
 	
+
 }
