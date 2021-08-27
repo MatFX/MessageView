@@ -64,7 +64,7 @@ public class DemoMessageView extends Application
 			});
 			
 			BorderPane root = new BorderPane();
-			Scene scene = new Scene(root, 250, 250);
+			Scene scene = new Scene(root, 300, 250);
 			
 			
 			HBox topBox = new HBox();
