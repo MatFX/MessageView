@@ -304,8 +304,10 @@ public class MessageView extends BorderPane implements IMessageItemListener
 		stage.setHeight(MIN_HEIGHT_VALUE);
 		
 		//ab nun wird gewartet bis Anwender mit einem Button Klick etwas bestätigt
+		//TODO change to show
 		stage.showAndWait();
 		
+		//TODO change to void
 		return buttonType;
 	}
 	
